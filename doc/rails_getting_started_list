@@ -1,0 +1,12 @@
+rails new tealchest
+created .ruby-version   ( 2.2.0 )
+created .ruby-gemset   (tealchest)
+created group :test block in Gemfile
+added rspec-rails, capybara, database_cleaner, launchy to test block in Gemfile
+copied config/database.yml from careerbase and changed careerbase to tealchest
+'rails g rspec:install'
+`rake db:create:all`
+added config settings to application.rb to stop creation of unnecessary files on rails g
+added root route to config/routes.rb
+'rails g home controller index'
+added 'haml-rails' to Gemfile
