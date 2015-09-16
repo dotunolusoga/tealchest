@@ -1,5 +1,6 @@
 %h1 Products#show
 %p Find me in app/views/products/show.html.haml
 
-%div
-  @products
+
+- @products.each do |product|
+  %p= product.name

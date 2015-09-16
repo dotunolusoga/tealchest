@@ -1,0 +1,9 @@
+%h1 Add Product
+
+= simple_form_for @product do |f|
+  = f.input :name, label: "Name"
+  = f.input :description, label: "Description"
+  = f.input :price_cents, label: "Price"
+  = f.input :color, label: "Color"
+  = f.input :amount_available, label: "Quantity"
+  = f.button :submit, "Add"
