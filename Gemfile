@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.0'
 
 
 group :test do
+  gem 'shoulda-matchers', require: false
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
@@ -30,6 +31,8 @@ group :test do
 end
 
 group :development, :test do
+  gem 'faker'
+  gem 'fabrication'
   gem 'erb2haml'
   gem 'pry-rails'
   gem 'web-console', '~> 2.0'
