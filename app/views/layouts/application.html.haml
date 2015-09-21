@@ -7,6 +7,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    - flash.each do |key, message|
-      %div{ class: "flash-#{key}" }= message
-    = yield
+    .container-fluid
+      = render 'layouts/navbar'
+      - flash.each do |key, message|
+        %div{ class: "flash-#{key}" }= message
+      = yield

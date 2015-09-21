@@ -7,6 +7,9 @@ RSpec.describe Product, type: :model do
     it { should validate_presence_of(:price_cents) }
     it { should validate_presence_of(:color) }
     it { should validate_presence_of(:amount_available) }
+
+    it { should validate_numericality_of(:price_cents) }
+    it { should validate_numericality_of(:amount_available) }
     # it { should validate_presence_of(:image) }
 
     it "should have a working factory" do

@@ -1,0 +1,11 @@
+%header.navbar.navbar-default
+  %navbar-inner
+    .navbar-header
+      %button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button"
+      = link_to 'TealChest', root_path, class: 'navbar-brand'
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li.active
+          = link_to 'Home', root_path
+        %li
+          = link_to 'Fabrics', products_path
