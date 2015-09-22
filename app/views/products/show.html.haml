@@ -1,10 +1,19 @@
-%h1 Products
+%h1 Product
 
+%h1= @product.name
 
-- @products.each do |product|
-  %p= product.name
-  %p= product.description
-  %p= product.color
-  %p= product.price_cents
-  %p= product.amount_available
-  %p= product.image
+%p
+  %b Image:
+  = image_tag @product.image, height: "300"
+%p
+  %b Description
+  = @product.description
+%p
+  %b Color
+  = @product.color
+%p
+  %b Price
+  = number_to_currency @product.price_cents
+
+= link_to 'Edit', edit_product_path(@product)
+= link_to 'Back', products_path

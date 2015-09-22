@@ -1,0 +1,10 @@
+%h1 Edit Product
+
+= simple_form_for @product, html: { multipart: :true, class: "form-horizontal"} do |f|
+  = f.input :name, label: "Name"
+  = f.input :description, label: "Description"
+  = f.input :price_cents, label: "Price"
+  = f.input :color, label: "Color"
+  = f.input :amount_available, label: "Quantity"
+  = f.input :image, as: :file
+  = f.button :submit, "Update"
