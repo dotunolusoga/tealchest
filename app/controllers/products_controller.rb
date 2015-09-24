@@ -27,6 +27,19 @@ class ProductsController < ApplicationController
     end
   end
 
+  def update
+    @product = Product.find(params[:id])
+    @product.assign_attributes(product_params)
+    if @product.save
+      redirect_to products_path
+      flash.notice = "Product has been updated"
+    else
+      flash.alert = "Please fix the errors below to continue"
+      render :edit
+    end
+  end
+
+
   protected
 
   def product_params

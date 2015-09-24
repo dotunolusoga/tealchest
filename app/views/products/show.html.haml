@@ -3,7 +3,6 @@
 %h1= @product.name
 
 %p
-  %b Image:
   = image_tag @product.image, height: "300"
 %p
   %b Description
@@ -15,5 +14,5 @@
   %b Price
   = number_to_currency @product.price_cents
 
-= link_to 'Edit', edit_product_path(@product)
-= link_to 'Back', products_path
+= link_to 'Edit', edit_product_path(@product), class: "btn btn-success"
+= link_to 'Back', products_path, class: "btn btn-success"

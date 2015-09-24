@@ -1,4 +1,4 @@
-%h1 Products list
+%h1 Products List
 
 %table.table.table-hover
   %thead
@@ -19,5 +19,7 @@
       %td= product.amount_available
       %td= image_tag product.image.thumb
       %td
-        = link_to 'Edit', edit_product_path(product)
-        = link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Do you really want to do this?'}
+        = link_to 'Edit', edit_product_path(product), class: "btn btn-success"
+        = link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Do you really want to do this?'}, class: "btn btn-success"
+
+%p= link_to 'New Product', new_product_path, class: "btn btn-success"
