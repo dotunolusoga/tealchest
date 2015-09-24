@@ -9,6 +9,6 @@
   %body
     .container-fluid
       = render 'layouts/navbar'
-      - flash.each do |key, message|
-        %div{ class: "flash-#{key}" }= message
+      = content_tag :div, notice, class: "bg-success"
+      = content_tag :div, alert, class: "bg-danger"
       = yield

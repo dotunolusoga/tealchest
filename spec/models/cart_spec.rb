@@ -30,12 +30,12 @@ RSpec.describe Cart do
     cart = Cart.new
     cart.add_item 1
 
-    expect(session_hash).to eq(cart.serialize)
+    expect(session_hash["cart"]).to eq(cart.serialize)
   end
 
   scenario 'test builds from hash' do
     cart = Cart.build_from_hash session_hash
-    
+
     expect(cart.items.first.product_id).to eq(1)
   end
 
