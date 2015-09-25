@@ -1,9 +1,12 @@
+%h1 Shopping Cart
+
 %table.table.table-hover
   %thead
     %tr
-      %th= "Quantity"
-      %th= "Product"
-      %th= "Price"
+      %th Quantity
+      %th Product
+      %th Price
+
   - @cart.items.each do |item|
     %tr
       %td= item.quantity
@@ -11,5 +14,11 @@
         = image_tag item.product.image.thumb
         = link_to item.product.name, item.product
       %td= number_to_currency item.total_price
+    %tfoot
+      %tr
+        %td.text-right(colspan=3)
+          %strong
+            Total:
+            = number_to_currency @cart.total_price
 
-%p= number_to_currency @cart.total_price
+%p= link_to "Checkout", checkout_cart_path, class: "btn btn-success"

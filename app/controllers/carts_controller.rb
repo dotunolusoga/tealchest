@@ -11,4 +11,8 @@ class CartsController < ApplicationController
   def show
   end
 
+  def checkout
+    @order_form = OrderForm.new
+  end
+
 end

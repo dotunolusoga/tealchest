@@ -1,0 +1,19 @@
+%h1 Checkout
+
+%h2 Products in cart:
+
+%ul
+  - @cart.items.each do |item|
+    %li
+      %em= item.quantity
+      = item.product.name
+      = number_to_currency item.total_price
+
+%p
+  %strong
+    Total price:
+    = number_to_currency @cart.total_price
+
+= simple_form_for @order_form, url: orders_path, html: { class: "form-horizontal" } do |f|
+
+  = f.fields_for :user
