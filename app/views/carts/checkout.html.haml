@@ -14,6 +14,20 @@
     Total price:
     = number_to_currency @cart.total_price
 
-= simple_form_for @order_form, url: orders_path, html: { class: "form-horizontal" } do |f|
+= form_for @order_form, url: orders_path do |f|
+  = render "orders/errors"
+  = f.fields_for :user, f.object.user do |u|
+    .form-group
+      %p=u.text_field :name, placeholder: "Name", class: "form-control"
+      %p
+        =u.text_field :email, placeholder: "Email", class: "form-control"
+        %span.help-block This will help you track your order more effectively
+    .form-group
+      .row
+        %p.col-md-6=u.text_field :address, placeholder: "Address", class: "form-control"
+        %p.col-md-3=u.text_field :city, placeholder: "City", class: "form-control"
+        %p.col-md-3=u.text_field :postal_code, placeholder: "Zip code", class: "form-control"
+      %p=u.country_select :country, class: "form-control"
+      %P=u.text_field :phone, placeholder: "Phone", class: "form-control"
 
-  = f.fields_for :user
+    %p=f.submit "Place order", class: "btn btn-success"
