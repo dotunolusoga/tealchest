@@ -6,7 +6,8 @@ class OrdersController < ApplicationController
 
   def create
     @order_form = OrderForm.new(
-      user: User.new(order_params[:user])
+      user: User.new(order_params[:user]),
+      cart: @cart
     )
     if @order_form.save
       redirect_to root_path, notice: "Thank you for placing the order"
