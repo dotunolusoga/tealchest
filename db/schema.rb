@@ -72,5 +72,5 @@ ActiveRecord::Schema.define(version: 20150924195200) do
 
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
-  add_foreign_key "orders", "users"
+  add_foreign_key "orders", "users", on_delete: :cascade
 end
