@@ -40,11 +40,21 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    @product.destroy
+    if @product.destroy
+      redirect_to products_path, notice: "Product has now been deleted."
+    else
+      flash.alert = "Product could not be deleted."
+    end
+
+  end
+
 
   protected
 
   def product_params
-    params.require(:product).permit(:name, :description, :color, :image, :price_cents, :amount_available)
+    params.require(:product).permit(:name, :description, :color, :image, :price_cents, :amount_available, :category_id)
   end
 
 end

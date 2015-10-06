@@ -13,6 +13,8 @@
 %p
   %b Price
   = number_to_currency @product.price_cents
+%p
+  = @product.category.name
 
 %p= link_to "Add to cart", add_cart_path, method: :post, class: "btn btn-success"
 
