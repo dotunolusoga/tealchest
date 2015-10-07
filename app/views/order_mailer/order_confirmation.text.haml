@@ -1,12 +1,6 @@
-Hello
-= @order.user.name,
+Hello #{@order.user.name},
 
-Thank you for placing an order. Here is a summary for order # = @order_id:
-
-- @order.items.each do |item|
-    = item.quantity
-    = item.product.name
-    = ( number_to_currency item.total_price)
-
-Total:
-= number_to_currency @order.total_price
+Thank you for placing an order. Here is a summary for order ##{@order.id}:
+- @order.order_items.each do |item|
+  * #{item.quantity} #{item.product.name} (#{number_to_currency item.total_price})
+Total: #{number_to_currency @order.total_price}
