@@ -15,7 +15,7 @@ RSpec.feature "Visitor can add product" do
     fill_in "Color", with: "Yellow"
     fill_in "Quantity", with: "50"
 
-    click_on "Add"
+    click_on "Create Product"
     current_path.should == products_path
     page.should have_css("td", text: "Lace")
   end
@@ -27,7 +27,7 @@ RSpec.feature "Visitor can add product" do
     expect(page).to have_content "Add Product"
     fill_in "Name", with: ""
     fill_in "Description", with: ""
-    click_on "Add"
+    click_on "Create Product"
     expect(page).to have_content("Product could not be saved. Please fix the errors to continue.")
   end
 

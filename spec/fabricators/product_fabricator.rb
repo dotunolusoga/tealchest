@@ -4,4 +4,5 @@ Fabricator(:product) do
   price_cents      1
   color            { Faker::Commerce.color }
   amount_available 1
+  category_id      1
 end

@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20151006201421) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.string   "image"
-    t.integer  "category_id",      default: 1
+    t.integer  "category_id",      default: 5
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
@@ -83,5 +83,4 @@ ActiveRecord::Schema.define(version: 20151006201421) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
-  add_foreign_key "products", "categories"
 end

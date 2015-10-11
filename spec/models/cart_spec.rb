@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Cart do
 
@@ -18,7 +19,7 @@ RSpec.describe Cart do
   end
 
   scenario 'tests retrieves products' do
-    product = Product.create! name: "Ankara", price_cents: 1, description: "Fabric", color: "grey", amount_available: 5
+    product = Product.create! name: "Ankara", price_cents: 1, description: "Fabric", color: "grey", amount_available: 5, category_id: 1
 
     cart = Cart.new
     cart.add_item product.id

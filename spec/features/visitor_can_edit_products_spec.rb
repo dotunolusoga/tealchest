@@ -14,7 +14,7 @@ RSpec.feature "Visitor can edit product" do
     fill_in "Color", with: "Yellow"
     fill_in "Quantity", with: "50"
 
-    click_on "Add"
+    click_on "Create Product"
     current_path.should == products_path
     page.should have_css("td", text: "Lace")
 
@@ -24,7 +24,7 @@ RSpec.feature "Visitor can edit product" do
     fill_in "Description", with: "Purple Expensive Lace"
     current_path.should == edit_product_path
 
-    click_on "Update"
+    click_on "Update Product"
     expect(page).to have_content "Products List"
     expect(page).to have_content "Name"
     expect(page).to have_content "Description"
