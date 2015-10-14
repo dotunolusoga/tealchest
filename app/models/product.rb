@@ -11,5 +11,6 @@ class Product < ActiveRecord::Base
   validates_numericality_of :price_cents, :amount_available
 
   belongs_to :category
+  has_many :order_items, dependent: :destroy
 
 end

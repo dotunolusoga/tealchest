@@ -18,7 +18,7 @@ RSpec.feature "Visitor can edit product" do
     current_path.should == products_path
     page.should have_css("td", text: "Lace")
 
-    click_on "Edit"
+    first(:link, 'Edit').click
     expect(page).to have_content "Edit Product"
     fill_in "Name", with: "Guipere"
     fill_in "Description", with: "Purple Expensive Lace"
