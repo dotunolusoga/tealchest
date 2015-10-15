@@ -22,12 +22,13 @@ RSpec.feature "Visitor can edit product" do
     expect(page).to have_content "Edit Product"
     fill_in "Name", with: "Guipere"
     fill_in "Description", with: "Purple Expensive Lace"
-    current_path.should == edit_product_path
 
     click_on "Update Product"
     expect(page).to have_content "Products List"
     expect(page).to have_content "Name"
     expect(page).to have_content "Description"
+    page.should have_css("td", text: "Guipere")
+    page.should have_css("td", text: "Purple Expensive Lace")
 
     current_path.should == products_path
 
