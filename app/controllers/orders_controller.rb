@@ -11,9 +11,33 @@ class OrdersController < ApplicationController
     )
     if @order_form.save
       notify_user
-      redirect_to root_url, notice: "Thank you for placing the order"
+      if false#charge_user
+        redirect_to root_url, notice: "Thank you for placing the order"
+      else
+        flash[:warning] = <<EOF
+We have stored your order with the id #{@order_form.order.id}.
+You should receive an email with the order details and password change.<br/>
+However, something went wrong with your credit card, please add another credit card.
+EOF
+        redirect_to new_payment_order_path(@order_form.order)
+      end
     else
       render "carts/checkout"
+    end
+  end
+
+  def new_payment
+    @order = Oder.find(params[:id])
+  end
+
+  def pay
+    @order = Oder.find(params[:id])
+    transaction = Ordertransaction.new(@order, params[:payment_method_nonce])
+    transaction.execute
+    if transaction.ok?
+      redirect_to root_url, notice: "Thank you for placing the order"
+    else
+      render 'orders/new_payment'
     end
   end
 
@@ -24,10 +48,15 @@ class OrdersController < ApplicationController
     OrderMailer.order_confirmation(@order_form.order).deliver
   end
 
-
   def order_params
     params.require(:order_form).permit(
       user: [ :name, :email, :phone, :address, :city, :country, :postal_code ]
     )
+  end
+
+  def charge_user
+    transaction = Ordertransaction.new(@order, params[:payment_method_nonce])
+    transaction.execute
+    transaction.ok?
   end
 end

@@ -1,11 +1,12 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe OrderTransaction do
   product = Fabricate(:product)
 
   scenario 'test creates a transaction' do
     order = Order.new
-    order.order_items << OrderItem.new(product, quantity: 1)
+    order.order_items << OrderItem.new(product: product, quantity: 1)
     nonce = Braintree::Test::Nonce::Transactable
     transaction = OrderTransaction.new order, nonce
 
