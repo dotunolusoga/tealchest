@@ -27,12 +27,13 @@ EOF
   end
 
   def new_payment
-    @order = Oder.find(params[:id])
+    @order = Order.find(params[:id])
+    @client_token = Braintree::ClientToken.generate
   end
 
   def pay
-    @order = Oder.find(params[:id])
-    transaction = Ordertransaction.new(@order, params[:payment_method_nonce])
+    @order = Order.find(params[:id])
+    transaction = OrderTransaction.new(@order, params[:payment_method_nonce])
     transaction.execute
     if transaction.ok?
       redirect_to root_url, notice: "Thank you for placing the order"
