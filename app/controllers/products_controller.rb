@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_filter :initialize_cart
+  before_action :authenticate_admin!, only: [ :new, :edit, :update, :create, :destroy ]
 
 
   def new

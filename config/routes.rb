@@ -2,10 +2,9 @@ Rails.application.routes.draw do
 
   resources :categories
   devise_for :users
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
+  resources :products
+
   root 'home#index'
 
     resource :cart, only: [ :show ] do
@@ -13,14 +12,13 @@ Rails.application.routes.draw do
       get :checkout
     end
 
-    resources :orders, only: [ :index, :show, :create ] do
+    resources :orders, only: [ :index, :show, :create, :update ] do
       member do
         get :new_payment
         post :pay
       end
     end
 
-    resources :products, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

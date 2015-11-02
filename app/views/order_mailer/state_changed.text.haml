@@ -1,0 +1,12 @@
+Hello #{@order.user.name},
+
+We wanted to let you know that your order has been updated.
+
+Previous state: #{@previous_state}
+New state: #{@order.state}
+
+Here is a summary for order ##{@order.id}:
+- @order.order_items.each do |item|
+  * #{item.quantity} #{item.product.name} (#{number_to_currency item.total_price})
+  
+Total: #{number_to_currency @order.total_price}
