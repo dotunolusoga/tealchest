@@ -1,5 +1,6 @@
 %h1 Checkout
 
+
 %h2 Products in cart:
 
 %ul
@@ -16,19 +17,33 @@
 
 = form_for @order_form, url: orders_path do |f|
   = render "orders/errors"
-  = f.fields_for :user, f.object.user do |u|
-    .form-group
-      %p=u.text_field :name, placeholder: "Name", class: "form-control"
-      %p
-        =u.text_field :email, placeholder: "Email", class: "form-control"
+
+  - if user_signed_in?
+    = f.fields_for :user, f.object.user do |u|
+      .form-group
+        %p=u.text_field :name, placeholder: "Name", class: "form-control"
         %span.help-block This will help you track your order more effectively
-    .form-group
-      .row
-        %p.col-md-6=u.text_field :address, placeholder: "Address", class: "form-control"
-        %p.col-md-3=u.text_field :city, placeholder: "City", class: "form-control"
-        %p.col-md-3=u.text_field :postal_code, placeholder: "Zip code", class: "form-control"
-      %p=u.country_select :country, class: "form-control"
-      %P=u.text_field :phone, placeholder: "Phone", class: "form-control"
+      .form-group
+        .row
+          %p.col-md-6=u.text_field :address, placeholder: "Address", class: "form-control"
+          %p.col-md-3=u.text_field :city, placeholder: "City", class: "form-control"
+          %p.col-md-3=u.text_field :postal_code, placeholder: "Zip code", class: "form-control"
+        %p=u.country_select :country, class: "form-control"
+        %P=u.text_field :phone, placeholder: "Phone", class: "form-control"
+  - else
+    = f.fields_for :user, f.object.user do |u|
+      .form-group
+        %p=u.text_field :name, placeholder: "Name", class: "form-control"
+        %p
+          =u.text_field :email, placeholder: "Email", class: "form-control"
+          %span.help-block This will help you track your order more effectively
+      .form-group
+        .row
+          %p.col-md-6=u.text_field :address, placeholder: "Address", class: "form-control"
+          %p.col-md-3=u.text_field :city, placeholder: "City", class: "form-control"
+          %p.col-md-3=u.text_field :postal_code, placeholder: "Zip code", class: "form-control"
+        %p=u.country_select :country, class: "form-control"
+        %P=u.text_field :phone, placeholder: "Phone", class: "form-control"
 
     #payment-form
 

@@ -8,11 +8,12 @@ class CartsController < ApplicationController
     redirect_to :back, notice: "Added #{product.name} to cart"
   end
 
+
   def show
   end
 
   def checkout
-    @order_form = OrderForm.new(user: User.new)
+    @order_form = OrderForm.new(user: current_user || User.new)
     @client_token = Braintree::ClientToken.generate
   end
 

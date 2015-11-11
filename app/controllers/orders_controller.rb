@@ -7,12 +7,12 @@ class OrdersController < ApplicationController
 
   def create
     @order_form = OrderForm.new(
-      user: User.new(order_params[:user]),
+      user: current_user || User.new(order_params[:user]),
       cart: @cart
     )
     if @order_form.save
       notify_user
-      if false#charge_user
+      if false #charge_user
         redirect_to root_url, notice: "Thank you for placing the order"
       else
         flash[:warning] = <<EOF
@@ -55,8 +55,12 @@ EOF
   private
 
   def notify_user
-    @order_form.user.send_reset_password_instructions
-    OrderMailer.order_confirmation(@order_form.order).deliver
+    if current_user?
+      OrderMailer.order_confirmation(@order_form.order).deliver
+    else
+      @order_form.user.send_reset_password_instructions
+      OrderMailer.order_confirmation(@order_form.order).deliver
+    end
   end
 
   def notify_user_about_state
@@ -70,7 +74,7 @@ EOF
   end
 
   def charge_user
-    transaction = Ordertransaction.new(@order, params[:payment_method_nonce])
+    transaction = OrderTransaction.new(@order, params[:payment_method_nonce])
     transaction.execute
     transaction.ok?
   end
