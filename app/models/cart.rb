@@ -1,5 +1,6 @@
 class Cart
   attr_reader :items
+  attr_accessor :user
 
   def self.build_from_hash hash
     items = if hash["cart"] then

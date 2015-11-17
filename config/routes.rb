@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :categories
-  devise_for :users
+  devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
 
   resources :products
 
@@ -17,6 +17,10 @@ Rails.application.routes.draw do
         get :new_payment
         post :pay
       end
+    end
+
+    namespace :admin do
+      get '', to: 'dashboard#index', as: '/'
     end
 
 

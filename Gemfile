@@ -19,9 +19,11 @@ gem 'puma'
 gem 'devise'
 gem 'country_select'
 gem 'simple_form'
+gem 'rails-erd'
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
+
 
 
 group :test do

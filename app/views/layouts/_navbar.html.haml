@@ -22,9 +22,10 @@
                 = link_to category.name, category
     %p.navbar-text.navbar-right
       - if user_signed_in?
-        = "Logged in as #{current_user.name}"
-        = link_to "Logout", destroy_user_session_path, method: :delete
+        = link_to "Hi #{current_user.name}", edit_user_registration_path, class: "navbar-link"
+        = link_to "Logout", destroy_user_session_path, class: "navbar-link", method: :delete
       - else
+        = link_to "Sign Up", new_user_registration_path, class: "navbar-link"
         = link_to "Login", new_user_session_path, class: "navbar-link"
 
     = render "cart"
