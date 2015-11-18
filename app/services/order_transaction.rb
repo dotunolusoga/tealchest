@@ -12,6 +12,7 @@ class OrderTransaction
     )
   end
 
+
   def ok?
     @result.success?
   end

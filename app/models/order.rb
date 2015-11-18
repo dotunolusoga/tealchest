@@ -8,6 +8,7 @@ class Order < ActiveRecord::Base
 
   STATES = [
     [ "New", :new ],
+    [ "Order Confirmed", :confirmed ],
     [ "Dispatched", :dispatched ]
   ]
 
