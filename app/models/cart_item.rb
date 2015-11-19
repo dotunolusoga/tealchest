@@ -7,7 +7,7 @@ class CartItem
   end
 
   def increment
-    @quantity = @quantity + 1
+    @quantity += 1
   end
 
   def product

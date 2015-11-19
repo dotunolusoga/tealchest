@@ -3,13 +3,10 @@ class Cart
   attr_accessor :user
 
   def self.build_from_hash hash
-    items = if hash["cart"] then
-      hash["cart"]["items"].map do |item_data|
+    items = [] unless hash['cart']
+    items ||= (hash["cart"]["items"].map do |item_data|
       CartItem.new( item_data["product_id"], item_data["quantity"])
-      end
-    else
-      []
-    end
+    end)
 
     new items
   end
@@ -30,7 +27,7 @@ class Cart
   def empty?
     @items.empty?
   end
-
+  
   def count
     @items.length
   end
@@ -38,13 +35,12 @@ class Cart
   def serialize
     items = @items.map do |item|
       {
-        "product_id" => item.product_id,
-        "quantity" => item.quantity
+        product_id: item.product_id, quantity: item.quantity
       }
     end
 
     {
-      "items" => items
+      items: items
     }
   end
 

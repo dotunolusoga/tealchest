@@ -5,9 +5,7 @@ class OrderForm
   attr_writer :cart
 
   def save
-    unless user.present?
-      set_password_for_user
-    end
+    set_password_for_user unless user.present?
 
     if valid?
       persist

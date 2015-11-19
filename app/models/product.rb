@@ -1,6 +1,8 @@
 class Product < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
+  scope :deleted, -> { where(deleted: false) }
+
   validates :name, presence: true
   validates :description, presence: true
   validates :color, presence: true
