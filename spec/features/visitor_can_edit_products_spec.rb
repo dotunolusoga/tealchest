@@ -2,9 +2,15 @@ require "rails_helper"
 require "spec_helper"
 
 RSpec.feature "Visitor can edit product" do
+  user = Fabricate(:user)
+  user = User.new(admin: true)
+
+  before :each do
+    visit root_path
+    login_as user, scope: :user
+  end
 
   scenario "test editing products" do
-    visit root_path
 
     click_on "New Product"
     expect(page).to have_content "Add Product"
@@ -32,18 +38,6 @@ RSpec.feature "Visitor can edit product" do
 
     current_path.should == products_path
 
-
-  end
-
-  scenario "sad path" do
-    visit root_path
-
-    click_on "Fabric"
-    expect(page).to have_content "Products List"
-    expect(page).to have_content "Name"
-    expect(page).to have_content "Description"
-
-    current_path.should == products_path
   end
 
 end
