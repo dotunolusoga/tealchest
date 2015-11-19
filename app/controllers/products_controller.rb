@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.update_attribute(:deleted, true)
-    if @product.update_attribute
+    if @product.destroy
       redirect_to products_path, notice: "Product has now been deleted."
     else
       flash.alert = "Product could not be deleted."
