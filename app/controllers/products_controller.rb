@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
-    @product.destroy
+    @product.update_attribute(:deleted, true)
     if @product.destroy
       redirect_to products_path, notice: "Product has now been deleted."
     else

@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
+    @category.update_attribute(:deleted, true)
     redirect_to categories_url, notice: 'Category was successfully destroyed.'
   end
 

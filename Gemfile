@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.2.0'
 
-
 gem 'rails', '4.2.1'
 gem 'pg'
 gem 'haml-rails'
@@ -20,11 +19,10 @@ gem 'devise'
 gem 'country_select'
 gem 'simple_form'
 gem 'rails-erd'
+gem 'rubocop', require: false
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
-
-
 
 group :test do
   gem 'shoulda-matchers', require: false
